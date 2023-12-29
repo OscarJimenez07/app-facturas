@@ -16,12 +16,39 @@ if ($conexionBD->connect_error) {
   die("Conexión fallida: " . $conexionBD->connect_error);
 }
 
-$crudnomina = mysqli_query($conexionBD,"SELECT * FROM facturas");
-if(mysqli_num_rows($crudnomina) > 0){
-    $crudnomina = mysqli_fetch_all($crudnomina,MYSQLI_ASSOC);
-    echo json_encode($crudnomina);
+if (isset($_GET["consultarFactura"])){
+  $appfacturas = mysqli_query($conexionBD,"SELECT * 
+                                          FROM facturas                                       
+                                          WHERE Id =".$_GET["consultarFactura"]);
+  if(mysqli_num_rows($appfacturas) > 0){
+      $appfacturas = mysqli_fetch_all($appfacturas,MYSQLI_ASSOC);
+      echo json_encode($appfacturas);
+      exit();
+  }
+  else{  echo json_encode(["success"=>0]); }
 }
-else{ echo json_encode([["success"=>0]]); }
 
+
+if (isset($_GET["consultarValor"])){
+  $appfacturas = mysqli_query($conexionBD,"SELECT  SUM(C.Valor) FROM facturas F 
+                                          LEFT JOIN cargas C ON F.Id = C.IdFac
+                                          WHERE F.Id =".$_GET["consultarValor"]);
+  if(mysqli_num_rows($appfacturas) > 0){
+      $appfacturas = mysqli_fetch_all($appfacturas,MYSQLI_ASSOC);
+      echo json_encode($appfacturas);
+      exit();
+  }
+  else{  echo json_encode(["success"=>0]); }
+}
+
+if (isset($_GET["consultar"])) {
+  $consultaFacturas = mysqli_query($conexionBD, "SELECT * FROM facturas");
+  if (mysqli_num_rows($consultaFacturas) > 0) {
+    $facturas = mysqli_fetch_all($consultaFacturas, MYSQLI_ASSOC);
+    echo json_encode($facturas);
+  } else {
+    echo json_encode(["success" => 0]);
+  }
+}
 
 ?>

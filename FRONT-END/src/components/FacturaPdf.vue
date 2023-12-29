@@ -38,7 +38,7 @@ export default {
       }
     },
     getFacturas() {
-    axios.get('http://localhost:8081/DatosFacturas/facturas.php') 
+    axios.get('http://localhost:8081/DatosFacturas/facturas.php?consultar') 
       .then(response => {
         this.facturas = response.data;
         this.buscarPdf();

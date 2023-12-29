@@ -7,7 +7,7 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
             <a href="#" style="font-size: 17px;">
-              <i class="bi bi-clipboard2-check-fill" style="font-size: 34px; margin-right: 5px;"></i>Facturas Ardisa S.A.
+              <i class="bi bi-clipboard-data" style="font-size: 34px; margin-right: 5px;"></i>Facturas Ardisa S.A.
             </a>
           </header>
           <nav class="dashboard-nav-list">
@@ -15,20 +15,11 @@
               <i class="fas fa-home" style="font-size: 25px; margin-right: 40px;"></i> Inicio
             </a>
             <a href="../lista" class="dashboard-nav-item" :class="{ active: isMenuActive('/lista'), 'text-black': isMenuActive('/lista') }">
-              <i class="bi bi-receipt-cutoff" style="font-size: 25px; margin-right: 35px;"></i> Facturas
+              <i class="bi bi-inboxes-fill" style="font-size: 25px; margin-right: 35px;"></i> Facturas
             </a>
-            <a href="#" class="dashboard-nav-item" :class="{ active: isMenuActive('/estados'), 'text-black': isMenuActive('/estados') }">
-              <i class="fas fa-file-upload" style="font-size: 25px; margin-right: 40px;"></i> Estados
-            </a>
-            <div class="dashboard-nav-dropdown"></div>
             <div class="dashboard-nav-dropdown">
               <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle" :class="{ active: isMenuActive('/usuarios'), 'text-black': isMenuActive('/usuarios') }">
                 <i class="fas fa-users" style="font-size: 20px; margin-right: 31px;"></i> Usuarios
-              </a>
-            </div>
-            <div class="dashboard-nav-dropdown">
-              <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle" :class="{ active: isMenuActive('/log'), 'text-black': isMenuActive('/log') }">
-                <i class="fas fa-money-check-alt" style="font-size: 20px; margin-right: 43px;"></i> Log
               </a>
             </div>
             <div class="dashboard-nav-dropdown" style="pointer-events: none;">
@@ -39,8 +30,24 @@
         </div>
         <div class="dashboard-app">
           <header class="dashboard-toolbar" style="background-color: #202124;" >
-            <i class="bi bi-clipboard2-check-fill" style="font-size: 34px; margin-left: 0px; color: white;"></i>
+            <i class="bi bi-clipboard-data" style="font-size: 34px; margin-left: 0px; color: white;"></i>
             <span style="font-size: 17px; color: white; margin-left: 5px;">Facturas Ardisa S.A.</span>
+
+            <ul class="navbar-nav ml-auto">
+      <li class="nav-item d-flex align-items-center">
+        <div class="user-status-dot"></div>
+        <span class="nav-link" style="color: white; font-style: italic; margin-right: 8px;">{{ username }}</span>
+        <i class="bi bi-person-workspace" style="color: #00a135; font-size: 30px; cursor: pointer;"></i> 
+        <span style="margin-left: 8px;">
+          <button @click="logout" class="btn btn-outline-danger" style="font-size: 8px;">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </span>
+      </li>
+    </ul>
+
+
+
           </header>
           <div class="dashboard-content">
             <div class="container">
@@ -90,7 +97,7 @@ export default {
   sessionStorage.removeItem('loggedin');
   sessionStorage.removeItem('username');
 
-  this.$router.push({ name: 'Login' });
+  this.$router.push({ name: 'VistaLogin' });
 
   window.location.reload();
 },
@@ -103,6 +110,23 @@ isMenuActive(route) {
 </script>
 
 <style scoped>
+.user-status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00a135;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.user-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #202124;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+}
+
 .text-black {
   color: black !important; 
   font-weight: bold; 

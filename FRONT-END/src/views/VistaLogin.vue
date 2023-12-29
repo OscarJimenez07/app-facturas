@@ -19,7 +19,13 @@
      export default {
          components: {
           LoginSesion
-         }
+         },
+         mounted(){
+              console.log("%c¡Detente!","color:red;font-size:50px;font-weight:bold");
+              console.log("Esta función del navegador está pensada SOLO para desarrolladores, estas siendo monitoreado.")
+              console.log("App Web desarrollada por Sr. Oscar Jimenez")
+              console.log("Ardisa S.A.")
+         }        
      }
 </script>
 

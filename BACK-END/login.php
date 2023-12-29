@@ -20,7 +20,7 @@ if ($data && isset($data->UsrNam) && isset($data->Pass)) {
   $UsrNam = $data->UsrNam;
   $Pass = $data->Pass;
   
-  $selectQuery = "SELECT Pass, IdRol FROM usuarios WHERE UsrNam='$UsrNam'";
+  $selectQuery = "SELECT Pass, IdRol FROM encargados WHERE UsrNam='$UsrNam'";
   $result = $conexionBD->query($selectQuery);
   
   if ($result->num_rows > 0) {

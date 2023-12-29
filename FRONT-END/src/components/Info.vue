@@ -3,18 +3,46 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     
     data(){ return {} },
     
     computed: {} ,
     
-    created:function() {} ,
+    created:function() {
+        getFacturas();
+    } ,
     
-    methods: {} ,
+    methods: {
+        getFacturas(){
+            axios.get('http://example.com')
+                 .then((respuesta)=> {
+                  console.log(respuesta.data)  
+                 })
+                 .catch(()=> {})
+        },
 
-    watch: {}
-}
+        
+
+
+    } ,
+
+    props: {} ,
+
+    watch: {},
+
+    mounted() {
+        axios.get('http://example.com')
+                 .then((respuesta)=> {
+                  console.log(respuesta.data)  
+                 })
+                 .catch(()=> {})
+        }
+    }
+
+
 </script>
 
 <style>
